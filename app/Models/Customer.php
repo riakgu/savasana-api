@@ -18,5 +18,10 @@ class Customer extends Model
         'notes',
     ];
 
+    public function clients()
+    {
+        return $this->hasMany(Client::class);
+    }
+
 
 }
