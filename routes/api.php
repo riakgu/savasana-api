@@ -20,5 +20,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/customers', 'store');
         Route::get('/customers/{customer}', 'show');
         Route::patch('/customers/{customer}', 'update');
+        Route::get('/customers', 'index');
     });
 });

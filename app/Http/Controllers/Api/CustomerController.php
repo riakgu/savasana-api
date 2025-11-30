@@ -41,4 +41,13 @@ class CustomerController extends Controller
         ]);
 
     }
+
+    public function index()
+    {
+        $customers = Customer::withCount('clients', 'bookings')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return CustomerResource::collection($customers);
+    }
 }

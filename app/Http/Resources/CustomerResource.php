@@ -21,6 +21,8 @@ class CustomerResource extends JsonResource
             'email' => $this->email,
             'address' => $this->address,
             'notes' => $this->notes,
+            'clients_count' => $this->whenCounted('clients'),
+            'bookings_count' => $this->whenCounted('bookings'),
         ];
     }
 }
