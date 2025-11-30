@@ -21,4 +21,12 @@ class CustomerController extends Controller
             'data' => new CustomerResource($customer),
         ]);
     }
+
+    public function show(Customer $customer): JsonResponse
+    {
+
+        return response()->json([
+            'data' => new CustomerResource($customer),
+        ], 200);
+    }
 }
