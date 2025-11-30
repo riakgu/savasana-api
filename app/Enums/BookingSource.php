@@ -2,12 +2,12 @@
 
 namespace App\Enums;
 
-enum ClientType: string
+enum BookingSource: string
 {
-    case MOM = 'mom';
-    case BABY = 'baby';
-    case TODDLER = 'toddler';
-    case KID = 'kid';
+    case WHATSAPP = 'whatsapp';
+    case PHONE = 'phone';
+    case WALK_IN = 'walk_in';
+    case OTHER = 'other';
 
     public static function values(): array
     {

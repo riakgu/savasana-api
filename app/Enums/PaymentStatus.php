@@ -2,12 +2,11 @@
 
 namespace App\Enums;
 
-enum ClientType: string
+enum PaymentStatus: string
 {
-    case MOM = 'mom';
-    case BABY = 'baby';
-    case TODDLER = 'toddler';
-    case KID = 'kid';
+    case UNPAID = 'unpaid';
+    case PAID = 'paid';
+    case PARTIAL = 'partial';
 
     public static function values(): array
     {
