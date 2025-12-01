@@ -39,4 +39,12 @@ class BookingController extends Controller
             'data' => new BookingResource($booking)
         ]);
     }
+
+    public function index()
+    {
+        $bookings = Booking::orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return BookingResource::collection($bookings);
+    }
 }

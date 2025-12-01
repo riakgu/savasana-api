@@ -44,5 +44,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/bookings', 'store');
         Route::get('/bookings/{booking}', 'show');
         Route::patch('/bookings/{booking}', 'update');
+        Route::get('/bookings', 'index');
     });
 });
