@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\ServiceController;
@@ -37,5 +38,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/services/{service}', 'show');
         Route::patch('/services/{service}', 'update');
         Route::get('/services', 'index');
+    });
+
+    Route::controller(BookingController::class)->group(function () {
+        Route::post('/bookings', 'store');
     });
 });
