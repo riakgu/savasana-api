@@ -21,4 +21,11 @@ class ClientController extends Controller
             'data' => new ClientResource($client)
         ]);
     }
+
+    public function show(Client $client): JsonResponse
+    {
+        return response()->json([
+            'data' => new ClientResource($client)
+        ]);
+    }
 }

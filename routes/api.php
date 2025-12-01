@@ -26,5 +26,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::controller(ClientController::class)->group(function () {
         Route::post('/clients', 'store');
+        Route::get('/clients/{client}', 'show');
     });
 });
