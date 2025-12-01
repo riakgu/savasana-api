@@ -20,4 +20,11 @@ class BookingController extends Controller
             'data' => new BookingResource($booking)
         ], 201);
     }
+
+    public function show(Booking $booking)
+    {
+        return response()->json([
+            'data' => new BookingResource($booking)
+        ]);
+    }
 }

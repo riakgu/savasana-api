@@ -42,5 +42,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::controller(BookingController::class)->group(function () {
         Route::post('/bookings', 'store');
+        Route::get('/bookings/{booking}', 'show');
     });
 });
