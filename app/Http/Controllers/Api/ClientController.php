@@ -41,5 +41,14 @@ class ClientController extends Controller
         ]);
     }
 
+    public function index()
+    {
+        $clients = Client::withCount('bookings')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return ClientResource::collection($clients);
+    }
+
 
 }

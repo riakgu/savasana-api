@@ -22,6 +22,7 @@ class ClientResource extends JsonResource
             'birthdate' => $this->birthdate?->format('Y-m-d'),
             'gender' => $this->gender,
             'notes' => $this->notes,
+            'bookings_count' => $this->whenCounted('bookings'),
         ];
     }
 }

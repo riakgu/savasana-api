@@ -28,5 +28,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/clients', 'store');
         Route::get('/clients/{client}', 'show');
         Route::patch('/clients/{client}', 'update');
+        Route::get('/clients', 'index');
     });
 });
