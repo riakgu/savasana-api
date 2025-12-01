@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ServiceTarget;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,15 +14,17 @@ class Service extends Model
     protected $fillable = [
         'name',
         'description',
-        'duration_minutes',
-        'min_age_months',
-        'max_age_months',
+        'duration',
         'price',
+        'target',
         'is_active',
     ];
 
     protected $casts = [
+        'duration' => 'integer',
+        'price' => 'decimal:2',
         'is_active' => 'boolean',
+        'target' => ServiceTarget::class,
     ];
 
     public function bookings()

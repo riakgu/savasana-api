@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name');
             $table->text('description')->nullable();
-            $table->unsignedInteger('duration_minutes')->default(60);
-            $table->unsignedInteger('min_age_months')->nullable();
-            $table->unsignedInteger('max_age_months')->nullable();
-            $table->unsignedInteger('price');
+            $table->integer('duration');
+            $table->decimal('price', 10, 2);
+            $table->enum('target', ['baby', 'toddler', 'mom', 'all'])->default('all');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->softDeletes();
