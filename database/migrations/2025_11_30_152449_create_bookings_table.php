@@ -25,6 +25,14 @@ return new class extends Migration
             $table->text('notes')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->index('customer_id');
+            $table->index('client_id');
+            $table->index('service_id');
+            $table->index('booking_date');
+            $table->index('status');
+            $table->index('payment_status');
+            $table->index(['booking_date', 'booking_time']);
         });
     }
 

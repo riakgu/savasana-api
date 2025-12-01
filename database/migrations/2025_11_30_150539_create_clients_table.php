@@ -21,6 +21,9 @@ return new class extends Migration
             $table->text('notes')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->index('customer_id');
+            $table->index('type');
         });
     }
 
