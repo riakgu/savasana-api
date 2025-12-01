@@ -21,4 +21,11 @@ class ServiceController extends Controller
             'data' => new  ServiceResource($service),
         ]);
     }
+
+    public function show(Service $service): JsonResponse
+    {
+        return response()->json([
+            'data' => new  ServiceResource($service),
+        ]);
+    }
 }
