@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ClientGender;
 use App\Enums\ClientType;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,14 +13,15 @@ class Client extends Model
         'customer_id',
         'name',
         'type',
-        'birth_date',
-        'allergies',
-        'medical_notes',
+        'birthdate',
+        'gender',
+        'notes',
     ];
 
     protected $casts = [
         'type' => ClientType::class,
-        'birth_date' => 'date',
+        'gender' => ClientGender::class,
+        'birthdate' => 'date',
     ];
 
     public function customer()

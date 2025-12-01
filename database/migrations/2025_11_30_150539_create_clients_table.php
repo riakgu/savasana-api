@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained()->onDelete('restrict');
+            $table->foreignId('customer_id')->nullable()->constrained()->nullOnDelete();
             $table->string('name');
-            $table->enum('type', ['mom', 'baby', 'toddler', 'kid']);
-            $table->date('birth_date')->nullable();
-            $table->text('allergies')->nullable();
-            $table->text('medical_notes')->nullable();
+            $table->enum('type', ['mom', 'baby', 'toddler', 'kid'])->default('baby');
+            $table->date('birthdate')->nullable();
+            $table->enum('gender', ['male', 'female'])->nullable();
+            $table->text('notes')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
