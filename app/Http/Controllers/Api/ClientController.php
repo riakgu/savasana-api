@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\StoreClientRequest;
+use App\Http\Requests\Client\UpdateClientRequest;
 use App\Http\Resources\ClientResource;
 use App\Models\Client;
 use Illuminate\Http\JsonResponse;
@@ -28,4 +29,17 @@ class ClientController extends Controller
             'data' => new ClientResource($client)
         ]);
     }
+
+    public function update(UpdateClientRequest $request, Client $client): JsonResponse
+    {
+        $validated = $request->validated();
+
+        $client->update($validated);
+
+        return response()->json([
+            'data' => new ClientResource($client)
+        ]);
+    }
+
+
 }
