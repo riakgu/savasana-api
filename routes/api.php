@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\CustomerController;
+use App\Http\Controllers\Api\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,5 +30,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/clients/{client}', 'show');
         Route::patch('/clients/{client}', 'update');
         Route::get('/clients', 'index');
+    });
+
+    Route::controller(ServiceController::class)->group(function () {
+        Route::post('/services', 'store');
     });
 });
