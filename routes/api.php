@@ -36,5 +36,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/services', 'store');
         Route::get('/services/{service}', 'show');
         Route::patch('/services/{service}', 'update');
+        Route::get('/services', 'index');
     });
 });

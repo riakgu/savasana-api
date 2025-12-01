@@ -40,4 +40,13 @@ class ServiceController extends Controller
             'data' => new  ServiceResource($service),
         ]);
     }
+
+    public function index()
+    {
+        $services = Service::withCount('bookings')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return ServiceResource::collection($services);
+    }
 }

@@ -22,6 +22,7 @@ class ServiceResource extends JsonResource
             'price' => $this->price,
             'target' => $this->target,
             'is_active' => $this->is_active,
+            'bookings_count' => $this->whenCounted('bookings'),
         ];
     }
 }
