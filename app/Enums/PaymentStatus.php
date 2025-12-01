@@ -6,7 +6,6 @@ enum PaymentStatus: string
 {
     case UNPAID = 'unpaid';
     case PAID = 'paid';
-    case PARTIAL = 'partial';
 
     public static function values(): array
     {

@@ -2,12 +2,10 @@
 
 namespace App\Enums;
 
-enum BookingSource: string
+enum PaymentMethod: string
 {
-    case WHATSAPP = 'whatsapp';
-    case PHONE = 'phone';
-    case WALK_IN = 'walk_in';
-    case OTHER = 'other';
+    case CASH = 'cash';
+    case TRANSFER = 'transfer';
 
     public static function values(): array
     {

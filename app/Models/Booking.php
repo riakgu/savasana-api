@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Enums\BookingSource;
 use App\Enums\BookingStatus;
+use App\Enums\PaymentMethod;
 use App\Enums\PaymentStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,22 +17,22 @@ class Booking extends Model
         'customer_id',
         'client_id',
         'service_id',
-        'scheduled_at',
-        'duration_minutes',
+        'booking_date',
+        'booking_time',
         'status',
-        'source',
-        'price',
+        'total_price',
         'payment_status',
+        'payment_method',
         'notes',
     ];
 
     protected $casts = [
-        'scheduled_at'   => 'datetime',
-        'price'          => 'integer',
-        'duration_minutes' => 'integer',
-        'status'         => BookingStatus::class,
-        'source'         => BookingSource::class,
+        'booking_date' => 'date',
+        'booking_time' => 'datetime:H:i',
+        'total_price' => 'decimal:2',
+        'status' => BookingStatus::class,
         'payment_status' => PaymentStatus::class,
+        'payment_method' => PaymentMethod::class,
     ];
 
     public function customer()

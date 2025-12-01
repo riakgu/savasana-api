@@ -5,10 +5,8 @@ namespace App\Enums;
 enum BookingStatus: string
 {
     case PENDING = 'pending';
-    case CONFIRMED = 'confirmed';
-    case DONE = 'done';
+    case COMPLETED = 'completed';
     case CANCELLED = 'cancelled';
-    case NO_SHOW = 'no_show';
 
     public static function values(): array
     {

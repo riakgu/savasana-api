@@ -15,21 +15,16 @@ return new class extends Migration
             $table->id();
             $table->foreignId('customer_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('client_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('service_id')->nullable()->constrained()->nullOnDelete();
-            $table->dateTime('scheduled_at');
-            $table->unsignedInteger('duration_minutes')->nullable();
-            $table->enum('status', ['pending', 'confirmed', 'done', 'cancelled', 'no_show',])->default('confirmed');
-            $table->enum('source', ['whatsapp', 'phone', 'walk_in', 'other'])->default('whatsapp');
-            $table->unsignedInteger('price');
-            $table->enum('payment_status', ['unpaid', 'paid', 'partial'])->default('unpaid');
+            $table->foreignId('service_id')->constrained()->onDelete('restrict');
+            $table->date('booking_date');
+            $table->time('booking_time');
+            $table->enum('status', ['pending', 'completed', 'cancelled'])->default('pending');
+            $table->decimal('total_price', 10, 2);
+            $table->enum('payment_status', ['unpaid', 'paid'])->default('unpaid');
+            $table->enum('payment_method', ['cash', 'transfer'])->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
             $table->softDeletes();
-
-            $table->index('scheduled_at');
-            $table->index(['status', 'scheduled_at']);
-            $table->index('customer_id');
-            $table->index('client_id');
         });
     }
 
