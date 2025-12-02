@@ -47,4 +47,22 @@ class BookingController extends Controller
 
         return BookingResource::collection($bookings);
     }
+
+    public function complete(Booking $booking)
+    {
+        $booking->update(['status' => 'completed']);
+
+        return response()->json([
+            'data' => new BookingResource($booking)
+        ]);
+    }
+
+    public function cancel(Booking $booking)
+    {
+        $booking->update(['status' => 'cancelled']);
+
+        return response()->json([
+            'data' => new BookingResource($booking)
+        ]);
+    }
 }
