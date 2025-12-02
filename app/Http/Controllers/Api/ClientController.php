@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\StoreClientRequest;
 use App\Http\Requests\Client\UpdateClientRequest;
+use App\Http\Resources\BookingResource;
 use App\Http\Resources\ClientResource;
 use App\Models\Client;
 use Illuminate\Http\JsonResponse;
@@ -48,6 +49,15 @@ class ClientController extends Controller
             ->paginate(10);
 
         return ClientResource::collection($clients);
+    }
+
+    public function bookings(Client $client)
+    {
+        $bookings = $client->bookings()->get()
+            ->sortByDesc('created_at');
+
+        return BookingResource::collection($bookings);
+
     }
 
 

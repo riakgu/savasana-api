@@ -33,6 +33,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/clients/{client}', 'show');
         Route::patch('/clients/{client}', 'update');
         Route::get('/clients', 'index');
+        Route::get('/clients/{client}/bookings', 'bookings');
+
     });
 
     Route::controller(ServiceController::class)->group(function () {
