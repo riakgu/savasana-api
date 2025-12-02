@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/customers/{customer}', 'show');
         Route::patch('/customers/{customer}', 'update');
         Route::get('/customers', 'index');
+        Route::get('/customers/{customer}/bookings', 'bookings');
     });
 
     Route::controller(ClientController::class)->group(function () {
