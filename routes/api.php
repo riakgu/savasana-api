@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\CustomerController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -49,5 +50,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::patch('/bookings/{booking}/cancel', 'cancel');
         Route::patch('/bookings/{booking}/mark-paid', 'markAsPaid');
         Route::patch('/bookings/{booking}/mark-unpaid', 'markAsUnpaid');
+    });
+
+    Route::controller(DashboardController::class)->group(function () {
+        Route::get('/dashboard', 'index');
     });
 });
