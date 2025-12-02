@@ -26,6 +26,26 @@ class BookingResource extends JsonResource
             'payment_status' => $this->payment_status,
             'payment_method' => $this->payment_method,
             'notes' => $this->notes,
+
+            'customer' => $this->whenLoaded('customer', fn() => [
+                'id' => $this->customer->id,
+                'name' => $this->customer->name,
+                'phone' => $this->customer->phone_number,
+            ]),
+
+            'client' => $this->whenLoaded('client', fn() => [
+                'id' => $this->client->id,
+                'name' => $this->client->name,
+                'type' => $this->client->type,
+                'gender' => $this->client->gender,
+            ]),
+
+            'service' => $this->whenLoaded('service', fn() => [
+                'id' => $this->service->id,
+                'name' => $this->service->name,
+                'duration' => $this->service->duration,
+                'price' => $this->service->price,
+            ]),
         ];
     }
 }

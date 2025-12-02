@@ -22,7 +22,19 @@ class ServiceResource extends JsonResource
             'price' => $this->price,
             'target' => $this->target,
             'is_active' => $this->is_active,
+
             'bookings_count' => $this->whenCounted('bookings'),
+
+            'bookings' => $this->whenLoaded('bookings', function () {
+                return $this->bookings->map(function ($booking) {
+                    return [
+                        'id'           => $booking->id,
+                        'booking_date' => $booking->booking_date?->format('Y-m-d'),
+                        'status'       => $booking->status,
+                        'total_price'  => $booking->total_price,
+                    ];
+                });
+            }),
         ];
     }
 }
