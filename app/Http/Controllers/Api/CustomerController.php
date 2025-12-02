@@ -28,7 +28,7 @@ class CustomerController extends Controller
     {
 
         return response()->json([
-            'data' => new CustomerResource($customer),
+            'data' => new CustomerResource($customer->load('clients')),
         ], 200);
     }
 

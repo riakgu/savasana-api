@@ -26,7 +26,7 @@ class ServiceController extends Controller
     public function show(Service $service): JsonResponse
     {
         return response()->json([
-            'data' => new  ServiceResource($service),
+            'data' => new  ServiceResource($service->load('bookings.service')),
         ]);
     }
 

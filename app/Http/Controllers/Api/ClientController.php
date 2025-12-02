@@ -27,7 +27,7 @@ class ClientController extends Controller
     public function show(Client $client): JsonResponse
     {
         return response()->json([
-            'data' => new ClientResource($client)
+            'data' => new ClientResource($client->load('bookings.service'))
         ]);
     }
 
