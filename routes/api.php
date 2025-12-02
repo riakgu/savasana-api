@@ -42,6 +42,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/services/{service}', 'show');
         Route::patch('/services/{service}', 'update');
         Route::get('/services', 'index');
+        Route::get('/services/{service}/stats', 'stats');
     });
 
     Route::controller(BookingController::class)->group(function () {

@@ -49,4 +49,15 @@ class ServiceController extends Controller
 
         return ServiceResource::collection($services);
     }
+
+    public function stats(Service $service): JsonResponse
+    {
+        $query = $service->bookings();
+
+        return response()->json([
+            'total_bookings' => $query->count(),
+            'completed_bookings' => $query->where('status','completed')->count(),
+            'total_revenue' => $query->where('payment_status','paid')->sum('total_price'),
+        ]);
+    }
 }
