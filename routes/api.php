@@ -47,6 +47,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/bookings', 'index');
         Route::patch('/bookings/{booking}/complete', 'complete');
         Route::patch('/bookings/{booking}/cancel', 'cancel');
-
+        Route::patch('/bookings/{booking}/mark-paid', 'markAsPaid');
+        Route::patch('/bookings/{booking}/mark-unpaid', 'markAsUnpaid');
     });
 });

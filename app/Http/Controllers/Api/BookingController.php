@@ -7,11 +7,12 @@ use App\Http\Requests\Booking\StoreBookingRequest;
 use App\Http\Requests\Booking\UpdateBookingRequest;
 use App\Http\Resources\BookingResource;
 use App\Models\Booking;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
-    public function store(StoreBookingRequest $request)
+    public function store(StoreBookingRequest $request): JsonResponse
     {
         $validated = $request->validated();
 
@@ -22,14 +23,14 @@ class BookingController extends Controller
         ], 201);
     }
 
-    public function show(Booking $booking)
+    public function show(Booking $booking): JsonResponse
     {
         return response()->json([
             'data' => new BookingResource($booking)
         ]);
     }
 
-    public function update(UpdateBookingRequest $request, Booking $booking)
+    public function update(UpdateBookingRequest $request, Booking $booking): JsonResponse
     {
         $validated = $request->validated();
 
@@ -48,7 +49,7 @@ class BookingController extends Controller
         return BookingResource::collection($bookings);
     }
 
-    public function complete(Booking $booking)
+    public function complete(Booking $booking): JsonResponse
     {
         $booking->update(['status' => 'completed']);
 
@@ -57,9 +58,37 @@ class BookingController extends Controller
         ]);
     }
 
-    public function cancel(Booking $booking)
+    public function cancel(Booking $booking): JsonResponse
     {
         $booking->update(['status' => 'cancelled']);
+
+        return response()->json([
+            'data' => new BookingResource($booking)
+        ]);
+    }
+
+    public function markAsPaid(Request $request, Booking $booking): JsonResponse
+    {
+        $request->validate([
+            'payment_method' => ['required', 'in:cash,transfer']
+        ]);
+
+        $booking->update([
+            'payment_status' => 'paid',
+            'payment_method' => $request->payment_method
+        ]);
+
+        return response()->json([
+            'data' => new BookingResource($booking)
+        ]);
+    }
+
+    public function markAsUnpaid(Booking $booking): JsonResponse
+    {
+        $booking->update([
+            'payment_status' => 'unpaid',
+            'payment_method' => null
+        ]);
 
         return response()->json([
             'data' => new BookingResource($booking)
